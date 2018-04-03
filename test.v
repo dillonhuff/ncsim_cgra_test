@@ -18,10 +18,13 @@ module test();
 
    integer    config_file;
    integer    scan_file;
+
+   reg 	      config_done;
    
    initial begin
 
-      config_file = $fopen("../../CGRAGenerator/bitstream/examples/pw2_sixteen.bsa", "r");
+      //config_file = $fopen("../../CGRAGenerator/bitstream/examples/pw2_sixteen.bsa", "r");
+      config_file = $fopen("../../CGRAGenerator/bitstream/examples/pw2_16x16_only_config_lines.bsa", "r");
       reset_done = 0;
 
       if (config_file == 0) begin
@@ -41,6 +44,8 @@ module test();
       #3 rst = 0;
 
       reset_done = 1;
+      config_done = 0;
+      
       $display("DONE WITH RESET");
 
    end // initial begin
@@ -65,6 +70,8 @@ module test();
 	 
 	 end else begin
 	    $display("Reached end of file!");
+	    config_done <= 1;
+	    config_addr <= 0;
 	 end
       end
    end
@@ -87,7 +94,18 @@ module test();
    wire [0:0] data_out_S0_T15;
 
    always @(posedge clk) begin
-      $display("data_out_S0_T15 = %d", data_out_S0_T15);
+      $display("data_out_S0_T0 = %d", data_out_S0_T0);
+      $display("data_out_S0_T1 = %d", data_out_S0_T1);
+      $display("data_out_S0_T2 = %d", data_out_S0_T2);
+      $display("data_out_S0_T3 = %d", data_out_S0_T3);
+      $display("data_out_S0_T4 = %d", data_out_S0_T4);
+      $display("data_out_S0_T5 = %d", data_out_S0_T5);
+      $display("data_out_S0_T6 = %d", data_out_S0_T6);
+      $display("data_out_S0_T7 = %d", data_out_S0_T7);
+      $display("data_out_S0_T8 = %d", data_out_S0_T8);
+      $display("data_out_S0_T9 = %d", data_out_S0_T9);
+      $display("data_out_S0_T10 = %d", data_out_S0_T10);
+      $display("data_out_S0_T11 = %d", data_out_S0_T11);
    end
 
    
@@ -108,22 +126,22 @@ module test();
    wire [0:0] data_in_S2_T14;
    wire [0:0] data_in_S2_T15;   
 
-   assign data_in_S2_T0 = 1'h1;
-   assign data_in_S2_T1 = 1'h1;
-   assign data_in_S2_T2 = 1'h1;
-   assign data_in_S2_T3 = 1'h1;
-   assign data_in_S2_T4 = 1'h1;
-   assign data_in_S2_T5 = 1'h1;
-   assign data_in_S2_T6 = 1'h1;
+   assign data_in_S2_T0 = 1'h0;
+   assign data_in_S2_T1 = 1'h0;
+   assign data_in_S2_T2 = 1'h0;
+   assign data_in_S2_T3 = 1'h0;
+   assign data_in_S2_T4 = 1'h0;
+   assign data_in_S2_T5 = 1'h0;
+   assign data_in_S2_T6 = 1'h0;
    assign data_in_S2_T7 = 1'h1;
    assign data_in_S2_T8 = 1'h1;
-   assign data_in_S2_T9 = 1'h1;
-   assign data_in_S2_T10 = 1'h1;
-   assign data_in_S2_T11 = 1'h1;
-   assign data_in_S2_T12 = 1'h1;
-   assign data_in_S2_T13 = 1'h1;
-   assign data_in_S2_T14 = 1'h1;
-   assign data_in_S2_T15 = 1'h1;
+   assign data_in_S2_T9 = 1'h0;
+   assign data_in_S2_T10 = 1'h0;
+   assign data_in_S2_T11 = 1'h0;
+   assign data_in_S2_T12 = 1'h0;
+   assign data_in_S2_T13 = 1'h0;
+   assign data_in_S2_T14 = 1'h0;
+   assign data_in_S2_T15 = 1'h0;
    
    top cgra(.clk_in(clk),
 	    .reset_in(rst),
