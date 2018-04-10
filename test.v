@@ -58,6 +58,9 @@ module test();
    always #2 clk = ~clk;
 
    reg [0:0] data_in_S0_T0_reg;
+
+   wire [15:0] data_in_16_S2;
+   wire [15:0] data_out_16_S0;
    
    // After reseting load data / configuration between rising clock edges
    always @(negedge clk) begin
@@ -83,6 +86,11 @@ module test();
 
 	 if (cycle_count >= max_cycles) begin
 	    $display("Finished at cycle count %d, data in = %b, data out = %b", cycle_count, data_in_16_S2, data_out_16_S0);
+
+	    if (data_in_16_S2*2 != data_out_16_S0) begin
+	       $display("Test FAILED, output is not 2x input!");
+	    end
+
 	    $finish();
 	 end
       end
@@ -106,7 +114,6 @@ module test();
    wire [0:0] data_out_S0_T14;
    wire [0:0] data_out_S0_T15;
 
-   wire [15:0] data_out_16_S0;
    assign data_out_16_S0 = {data_out_S0_T0,
 			    data_out_S0_T1,
 			    data_out_S0_T2,
@@ -176,7 +183,6 @@ module test();
    assign data_in_S2_T14 = 1'h0;
    assign data_in_S2_T15 = 1'h0;
 
-   wire [15:0] data_in_16_S2;
    assign data_in_16_S2 = {
 			   data_in_S2_T0,
 			   data_in_S2_T1,
