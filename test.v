@@ -20,10 +20,15 @@ module test();
    integer    scan_file;
 
    reg 	      config_done;
+
+   reg [64:0] cycle_count;
+   wire [64:0] max_cycles;
+
+   assign max_cycles = 300;
    
    initial begin
 
-      //config_file = $fopen("../../CGRAGenerator/bitstream/examples/pw2_sixteen.bsa", "r");
+      cycle_count = 0;
       config_file = $fopen("../../CGRAGenerator/bitstream/examples/pw2_16x16_only_config_lines.bsa", "r");
       reset_done = 0;
 
@@ -31,7 +36,7 @@ module test();
 	 $display("config_file was null");
 	 $finish;
       end else begin
-	 $display("Loaded config file, descriptor = %d", config_file);
+	 //$display("Loaded config file, descriptor = %d", config_file);
       end
 
       #1 clk = 0;
@@ -46,7 +51,7 @@ module test();
       reset_done = 1;
       config_done = 0;
       
-      $display("DONE WITH RESET");
+      //$display("DONE WITH RESET");
 
    end // initial begin
 
@@ -57,25 +62,33 @@ module test();
    // After reseting load data / configuration between rising clock edges
    always @(negedge clk) begin
 
-      $display("clk = %d", clk);
-      $display("config file = %d", config_file);
+      cycle_count <= cycle_count + 1;
+
+      //$display("clk = %d", clk);
+      //$display("config file = %d", config_file);
 
       if (reset_done) begin
 	 scan_file = $fscanf(config_file, "%h %h\n", config_addr, config_data);
 
 	 if (!$feof(config_file)) begin
 	 
-	    $display("config addr = %h", config_addr);
-	    $display("config data = %h", config_data);
+	    //$display("config addr = %h", config_addr);
+	    //$display("config data = %h", config_data);
 	 
 	 end else begin
-	    $display("Reached end of file!");
+//	    $display("Reached end of file!");
 	    config_done <= 1;
 	    config_addr <= 0;
+	 end
+
+	 if (cycle_count >= max_cycles) begin
+	    $display("Finished at cycle count %d, data in = %b, data out = %b", cycle_count, data_in_16_S2, data_out_16_S0);
+	    $finish();
 	 end
       end
    end
 
+   
    wire [0:0] data_out_S0_T0;
    wire [0:0] data_out_S0_T1;
    wire [0:0] data_out_S0_T2;
@@ -93,19 +106,39 @@ module test();
    wire [0:0] data_out_S0_T14;
    wire [0:0] data_out_S0_T15;
 
+   wire [15:0] data_out_16_S0;
+   assign data_out_16_S0 = {data_out_S0_T0,
+			    data_out_S0_T1,
+			    data_out_S0_T2,
+			    data_out_S0_T3,
+			    data_out_S0_T4,
+			    data_out_S0_T5,
+			    data_out_S0_T6,
+			    data_out_S0_T7,
+			    data_out_S0_T8,
+			    data_out_S0_T9,
+			    data_out_S0_T10,
+			    data_out_S0_T11,
+			    data_out_S0_T12,
+			    data_out_S0_T13,
+			    data_out_S0_T14,
+			    data_out_S0_T15};
+   
+   
+   
    always @(posedge clk) begin
-      $display("data_out_S0_T0 = %d", data_out_S0_T0);
-      $display("data_out_S0_T1 = %d", data_out_S0_T1);
-      $display("data_out_S0_T2 = %d", data_out_S0_T2);
-      $display("data_out_S0_T3 = %d", data_out_S0_T3);
-      $display("data_out_S0_T4 = %d", data_out_S0_T4);
-      $display("data_out_S0_T5 = %d", data_out_S0_T5);
-      $display("data_out_S0_T6 = %d", data_out_S0_T6);
-      $display("data_out_S0_T7 = %d", data_out_S0_T7);
-      $display("data_out_S0_T8 = %d", data_out_S0_T8);
-      $display("data_out_S0_T9 = %d", data_out_S0_T9);
-      $display("data_out_S0_T10 = %d", data_out_S0_T10);
-      $display("data_out_S0_T11 = %d", data_out_S0_T11);
+//      $display("data_out_S0_T0 = %d", data_out_S0_T0);
+//      $display("data_out_S0_T1 = %d", data_out_S0_T1);
+//      $display("data_out_S0_T2 = %d", data_out_S0_T2);
+//      $display("data_out_S0_T3 = %d", data_out_S0_T3);
+//      $display("data_out_S0_T4 = %d", data_out_S0_T4);
+//      $display("data_out_S0_T5 = %d", data_out_S0_T5);
+//      $display("data_out_S0_T6 = %d", data_out_S0_T6);
+//      $display("data_out_S0_T7 = %d", data_out_S0_T7);
+//      $display("data_out_S0_T8 = %d", data_out_S0_T8);
+//      $display("data_out_S0_T9 = %d", data_out_S0_T9);
+//      $display("data_out_S0_T10 = %d", data_out_S0_T10);
+//      $display("data_out_S0_T11 = %d", data_out_S0_T11);
    end
 
    
@@ -142,6 +175,26 @@ module test();
    assign data_in_S2_T13 = 1'h0;
    assign data_in_S2_T14 = 1'h0;
    assign data_in_S2_T15 = 1'h0;
+
+   wire [15:0] data_in_16_S2;
+   assign data_in_16_S2 = {
+			   data_in_S2_T0,
+			   data_in_S2_T1,
+			   data_in_S2_T2,
+			   data_in_S2_T3,
+			   data_in_S2_T4,
+			   data_in_S2_T5,
+			   data_in_S2_T6,
+			   data_in_S2_T7,
+			   data_in_S2_T8,
+			   data_in_S2_T9,
+			   data_in_S2_T10,
+			   data_in_S2_T11,
+			   data_in_S2_T12,
+			   data_in_S2_T13,
+			   data_in_S2_T14,
+			   data_in_S2_T15};
+   
    
    top cgra(.clk_in(clk),
 	    .reset_in(rst),
