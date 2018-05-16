@@ -24,12 +24,16 @@ module test();
    reg [64:0] cycle_count;
    wire [64:0] max_cycles;
 
-   assign max_cycles = 300;
+   assign max_cycles = 10000;
    
    initial begin
 
       cycle_count = 0;
-      config_file = $fopen("../../CGRAGenerator/bitstream/examples/pw2_16x16_only_config_lines.bsa", "r");
+//      config_file = $fopen("../../CGRAGenerator/bitstream/examples/pw2_16x16.bsa", "r");
+//      config_file = $fopen("./pw2_16x16.bsa", "r");
+      config_file = $fopen("../../CGRAGenerator/bitstream/bsbuilder/testdir/examples/conv_2_1.bsa", "r");
+//      config_file = $fopen("../FlatCircuit/test/conv_2_1_only_config_lines.bsa");
+//      config_file = $fopen("../FlatCircuit/test/pw2_16x16_only_config_lines.bsa");
       reset_done = 0;
 
       if (config_file == 0) begin
@@ -58,6 +62,8 @@ module test();
    always #2 clk = ~clk;
 
    reg [0:0] data_in_S0_T0_reg;
+   wire      data_in_S0_T0 = 1'b0;
+   
 
    wire [15:0] data_in_16_S2;
    wire [15:0] data_out_16_S0;
@@ -85,7 +91,7 @@ module test();
 	 end
 
 	 if (cycle_count >= max_cycles) begin
-	    $display("Finished at cycle count %d, data in = %b, data out = %b", cycle_count, data_in_16_S2, data_out_16_S0);
+	    $display("Finished at cycle count %d, data in = %b, %d, data out = %b, %d", cycle_count, data_in_16_S2, data_in_16_S2, data_out_16_S0, data_out_16_S0);
 
 	    if (data_in_16_S2*2 != data_out_16_S0) begin
 	       $display("Test FAILED, output is not 2x input!");
@@ -146,6 +152,10 @@ module test();
 //      $display("data_out_S0_T9 = %d", data_out_S0_T9);
 //      $display("data_out_S0_T10 = %d", data_out_S0_T10);
 //      $display("data_out_S0_T11 = %d", data_out_S0_T11);
+//      $display("data_out_S0_T11 = %d", data_out_S0_T12);
+//      $display("data_out_S0_T11 = %d", data_out_S0_T13);
+//      $display("data_out_S0_T11 = %d", data_out_S0_T14);
+//      $display("data_out_S0_T11 = %d", data_out_S0_T15);
    end
 
    
@@ -207,6 +217,40 @@ module test();
 	    .config_addr_in(config_addr),
 	    .config_data_in(config_data),
 
+	    .pad_S0_T0_in(data_in_S0_T0),
+	    .pad_S0_T1_in(data_in_S0_T0),
+	    .pad_S0_T2_in(data_in_S0_T0),
+	    .pad_S0_T3_in(data_in_S0_T0),
+	    .pad_S0_T4_in(data_in_S0_T0),
+	    .pad_S0_T5_in(data_in_S0_T0),
+	    .pad_S0_T6_in(data_in_S0_T0),
+	    .pad_S0_T7_in(data_in_S0_T0),
+	    .pad_S0_T8_in(data_in_S0_T0),
+	    .pad_S0_T9_in(data_in_S0_T0),
+	    .pad_S0_T10_in(data_in_S0_T0),
+	    .pad_S0_T11_in(data_in_S0_T0),
+	    .pad_S0_T12_in(data_in_S0_T0),
+	    .pad_S0_T13_in(data_in_S0_T0),
+	    .pad_S0_T14_in(data_in_S0_T0),
+	    .pad_S0_T15_in(data_in_S0_T0),
+
+	    .pad_S1_T0_in(data_in_S0_T0),
+	    .pad_S1_T1_in(data_in_S0_T0),
+	    .pad_S1_T2_in(data_in_S0_T0),
+	    .pad_S1_T3_in(data_in_S0_T0),
+	    .pad_S1_T4_in(data_in_S0_T0),
+	    .pad_S1_T5_in(data_in_S0_T0),
+	    .pad_S1_T6_in(data_in_S0_T0),
+	    .pad_S1_T7_in(data_in_S0_T0),
+	    .pad_S1_T8_in(data_in_S0_T0),
+	    .pad_S1_T9_in(data_in_S0_T0),
+	    .pad_S1_T10_in(data_in_S0_T0),
+	    .pad_S1_T11_in(data_in_S0_T0),
+	    .pad_S1_T12_in(data_in_S0_T0),
+	    .pad_S1_T13_in(data_in_S0_T0),
+	    .pad_S1_T14_in(data_in_S0_T0),
+	    .pad_S1_T15_in(data_in_S0_T0),
+	    
 	    .pad_S2_T0_in(data_in_S2_T0),
 	    .pad_S2_T1_in(data_in_S2_T1),
 	    .pad_S2_T2_in(data_in_S2_T2),
