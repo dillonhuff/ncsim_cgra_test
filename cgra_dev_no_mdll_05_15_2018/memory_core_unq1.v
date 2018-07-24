@@ -19,8 +19,8 @@
 // --------------- Begin Pre-Generation Parameters Status Report ---------------
 //
 //	From 'generate' statement (priority=5):
-// Parameter dwidth 	= 16
 // Parameter ddepth 	= 1024
+// Parameter dwidth 	= 16
 //
 //		---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 //
@@ -335,6 +335,11 @@ linebuffer_control_unq1  linebuffer_control
 .ren_to_mem(lb_ren),
 .read_data(read_data_linebuf)
 );
+
+   always @(posedge gclk) begin
+      $display("lb_valid  = %b", lb_valid_out);
+      $display("data_out  = %b", data_out);      
+   end
 
 fifo_control_unq1  fifo_control
 (

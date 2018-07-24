@@ -19,8 +19,8 @@
 // --------------- Begin Pre-Generation Parameters Status Report ---------------
 //
 //	From 'generate' statement (priority=5):
-// Parameter dwidth 	= 16
 // Parameter ddepth 	= 1024
+// Parameter dwidth 	= 16
 //
 //		---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 //

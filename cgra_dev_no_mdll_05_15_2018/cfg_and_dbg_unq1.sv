@@ -20,8 +20,8 @@
 //
 //	From 'generate' statement (priority=5):
 // Parameter SC_CFG_OPCODES 	= Data structure of type HASH
-// Parameter TC_CFG_BUS 	= no
 // Parameter SC_CFG_IFC_REF 	= Data structure of type cfg_ifc
+// Parameter TC_CFG_BUS 	= no
 // Parameter SC_CFG_BUS 	= yes
 //
 //		---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----

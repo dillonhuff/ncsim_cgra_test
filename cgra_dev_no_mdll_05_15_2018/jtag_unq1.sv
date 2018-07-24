@@ -130,12 +130,12 @@ module jtag_unq1
    cfg_ifc_unq1 sc_jtag2gc_ifc();
    cfg_ifc_unq1 sc_gc2jtag_ifc();
    //The opcode is the upper 3 address bits to the gc
-   assign ifc.config_addr_to_gc = sc_jtag2gc_ifc.cfgOut.addr;
-   assign ifc.config_data_to_gc = sc_jtag2gc_ifc.cfgOut.data;
-   assign ifc.config_op_to_gc = sc_jtag2gc_ifc.cfgOut.op;
-   assign sc_gc2jtag_ifc.cfgIn.data = ifc.config_data_from_gc;
-   assign sc_gc2jtag_ifc.cfgIn.addr = 0;
-   assign sc_gc2jtag_ifc.cfgIn.op = 3;//Set to Bypass so that input data_rd reg is always enabled. Is this ok?
+   assign ifc.config_addr_to_gc = sc_jtag2gc_ifc.addr;
+   assign ifc.config_data_to_gc = sc_jtag2gc_ifc.data;
+   assign ifc.config_op_to_gc = sc_jtag2gc_ifc.op;
+   assign sc_gc2jtag_ifc.data = ifc.config_data_from_gc;
+   assign sc_gc2jtag_ifc.addr = 0;
+   assign sc_gc2jtag_ifc.op = 3;//Set to Bypass so that input data_rd reg is always enabled. Is this ok?
 
    
    //These signals aren't used. Only included to avoid warnings.			

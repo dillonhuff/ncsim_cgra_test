@@ -19,15 +19,15 @@
 // --------------- Begin Pre-Generation Parameters Status Report ---------------
 //
 //	From 'generate' statement (priority=5):
-// Parameter cb_connections 	= 11111111111111
 // Parameter gen_mem_for_busname 	= BUS16
-// Parameter feedthrough_outputs 	= BUS16:00000 BUS1:00000
 // Parameter bus_config 	= BUS16:16b#1_1:1_1:1_1:1_1:1_1 BUS1:1b#1_1:1_1:1_1:1_1:1_1
-// Parameter registered_outputs 	= BUS16:11111 BUS1:11111
-// Parameter control_busname 	= BUS1
-// Parameter ddepth 	= 1024
 // Parameter global_signal_count 	= 4
+// Parameter registered_outputs 	= BUS16:11111 BUS1:11111
+// Parameter cb_connections 	= 11111111111111
+// Parameter feedthrough_outputs 	= BUS16:00000 BUS1:00000
+// Parameter ddepth 	= 1024
 // Parameter sb_fs 	= 10000#10000#10000
+// Parameter control_busname 	= BUS1
 //
 //		---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 //

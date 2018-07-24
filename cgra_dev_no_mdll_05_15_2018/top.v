@@ -192,7 +192,7 @@ lf_out
   output frefn_out_jm;    // (-) frefp for off-chip phase adjustment
 
   output [3:0] mdllout_pad; // 4-phase MDLL outputs
-
+  wire [19:0] jm_out;   // number of 1's in jitter measurement
   output [12:0] lf_out;    // LF output (MSB 7bits for mtune, LSB 6bits for dithering)
    // --------------------------------------
    // PLACEHOLDERS FOR VERILATOR INPUT WIRES
@@ -314,7 +314,6 @@ wire [3:0] stall;
     assign clk = clk_in;
     assign reset = reset_in;
     assign config_write = 1;
-
 
 // FIXME Note there are LOTS of unused wires being created below!
 // FIXME I assume they will be hooked up to something eventually

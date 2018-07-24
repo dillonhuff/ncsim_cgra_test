@@ -19,26 +19,26 @@
 // --------------- Begin Pre-Generation Parameters Status Report ---------------
 //
 //	From 'generate' statement (priority=5):
-// Parameter sb_fs 	= 10000#10000#10000
-// Parameter mult_mode 	= 1
-// Parameter global_signal_count 	= 4
 // Parameter reg_inputs 	= 1
-// Parameter use_add 	= 1
-// Parameter registered_outputs 	= BUS16:11111 BUS1:11111
-// Parameter feedthrough_outputs 	= BUS16:00000 BUS1:00000
-// Parameter reg_out 	= 0
-// Parameter use_bool 	= 1
-// Parameter cb_connections 	= 11111111111111
-// Parameter is_msb 	= 0
-// Parameter sides 	= 4
-// Parameter has_constant 	= 0
-// Parameter all_segments_for_all_tiles 	= 1
-// Parameter is_bidi 	= 0
-// Parameter bus_config 	= BUS16:16b#1_1:1_1:1_1:1_1:1_1 BUS1:1b#1_1:1_1:1_1:1_1:1_1
 // Parameter lut_inps 	= 3
 // Parameter use_div 	= 0
+// Parameter all_segments_for_all_tiles 	= 1
+// Parameter use_bool 	= 1
+// Parameter mult_mode 	= 1
 // Parameter use_cntr 	= 1
+// Parameter bus_config 	= BUS16:16b#1_1:1_1:1_1:1_1:1_1 BUS1:1b#1_1:1_1:1_1:1_1:1_1
+// Parameter cb_connections 	= 11111111111111
+// Parameter registered_outputs 	= BUS16:11111 BUS1:11111
+// Parameter is_bidi 	= 0
+// Parameter is_msb 	= 0
+// Parameter has_constant 	= 0
+// Parameter sb_fs 	= 10000#10000#10000
 // Parameter en_double 	= 0
+// Parameter feedthrough_outputs 	= BUS16:00000 BUS1:00000
+// Parameter reg_out 	= 0
+// Parameter use_add 	= 1
+// Parameter sides 	= 4
+// Parameter global_signal_count 	= 4
 // Parameter use_shift 	= 1
 //
 //		---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----

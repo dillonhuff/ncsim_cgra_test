@@ -20,12 +20,12 @@
 //
 //	From 'generate' statement (priority=5):
 // Parameter sides 	= 4
-// Parameter is_bidi 	= 0
-// Parameter num_tracks 	= 5
-// Parameter width 	= 1
 // Parameter pe_output_count 	= 3
+// Parameter is_bidi 	= 0
+// Parameter width 	= 1
 // Parameter feedthrough_outputs 	= 00000
 // Parameter registered_outputs 	= 11111
+// Parameter num_tracks 	= 5
 //
 //		---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 //

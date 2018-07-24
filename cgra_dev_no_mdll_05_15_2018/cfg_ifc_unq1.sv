@@ -19,9 +19,9 @@
 // --------------- Begin Pre-Generation Parameters Status Report ---------------
 //
 //	From 'generate' statement (priority=5):
-// Parameter OpcodeWidth 	= 5
-// Parameter DataWidth 	= 32
 // Parameter AddrWidth 	= 32
+// Parameter DataWidth 	= 32
+// Parameter OpcodeWidth 	= 5
 //
 //		---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 //

@@ -19,8 +19,8 @@
 // --------------- Begin Pre-Generation Parameters Status Report ---------------
 //
 //	From 'generate' statement (priority=5):
-// Parameter io_group 	= 0
 // Parameter side 	= 1
+// Parameter io_group 	= 0
 //
 //		---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 //

@@ -1,6 +1,8 @@
 // Full system test of CGRA
 module test();
 
+   reg [15:0]       data_driver_16_S2;
+
    reg clk;
    reg rst;
 
@@ -24,16 +26,13 @@ module test();
    reg [64:0] cycle_count;
    wire [64:0] max_cycles;
 
-   assign max_cycles = 10000;
+   assign max_cycles = 1000000;
    
    initial begin
 
       cycle_count = 0;
-//      config_file = $fopen("../../CGRAGenerator/bitstream/examples/pw2_16x16.bsa", "r");
-//      config_file = $fopen("./pw2_16x16.bsa", "r");
-      config_file = $fopen("../../CGRAGenerator/bitstream/bsbuilder/testdir/examples/conv_2_1.bsa", "r");
-//      config_file = $fopen("../FlatCircuit/test/conv_2_1_only_config_lines.bsa");
-//      config_file = $fopen("../FlatCircuit/test/pw2_16x16_only_config_lines.bsa");
+//      config_file = $fopen("./pw2_16x16_only_config_lines.bsa", "r");
+      config_file = $fopen("./conv_2_1.bsa", "r");
       reset_done = 0;
 
       if (config_file == 0) begin
@@ -44,6 +43,8 @@ module test();
       end
 
       #1 clk = 0;
+
+      data_driver_16_S2 = 0;
       
       config_addr = 0;
       config_data = 0;
@@ -92,6 +93,8 @@ module test();
 
 	 if (cycle_count >= max_cycles) begin
 	    $display("Finished at cycle count %d, data in = %b, %d, data out = %b, %d", cycle_count, data_in_16_S2, data_in_16_S2, data_out_16_S0, data_out_16_S0);
+            $display("\tdata driver = %b, %d", data_driver_16_S2, data_driver_16_S2);
+            
 
 	    if (data_in_16_S2*2 != data_out_16_S0) begin
 	       $display("Test FAILED, output is not 2x input!");
@@ -176,23 +179,6 @@ module test();
    wire [0:0] data_in_S2_T14;
    wire [0:0] data_in_S2_T15;   
 
-   assign data_in_S2_T0 = 1'h0;
-   assign data_in_S2_T1 = 1'h0;
-   assign data_in_S2_T2 = 1'h0;
-   assign data_in_S2_T3 = 1'h0;
-   assign data_in_S2_T4 = 1'h0;
-   assign data_in_S2_T5 = 1'h0;
-   assign data_in_S2_T6 = 1'h0;
-   assign data_in_S2_T7 = 1'h1;
-   assign data_in_S2_T8 = 1'h1;
-   assign data_in_S2_T9 = 1'h0;
-   assign data_in_S2_T10 = 1'h0;
-   assign data_in_S2_T11 = 1'h0;
-   assign data_in_S2_T12 = 1'h0;
-   assign data_in_S2_T13 = 1'h0;
-   assign data_in_S2_T14 = 1'h0;
-   assign data_in_S2_T15 = 1'h0;
-
    assign data_in_16_S2 = {
 			   data_in_S2_T0,
 			   data_in_S2_T1,
@@ -210,7 +196,27 @@ module test();
 			   data_in_S2_T13,
 			   data_in_S2_T14,
 			   data_in_S2_T15};
-   
+
+   always @(posedge clk) begin
+      data_driver_16_S2 <= data_driver_16_S2 + 1;
+   end
+
+   assign    {data_in_S2_T15,
+	      data_in_S2_T14,
+	      data_in_S2_T13,
+	      data_in_S2_T12,
+	      data_in_S2_T11,
+	      data_in_S2_T10,
+	      data_in_S2_T9,
+	      data_in_S2_T8,
+	      data_in_S2_T7,
+	      data_in_S2_T6,
+	      data_in_S2_T5,
+	      data_in_S2_T4,
+	      data_in_S2_T3,
+	      data_in_S2_T2,
+	      data_in_S2_T1,
+	      data_in_S2_T0} = data_driver_16_S2;
    
    top cgra(.clk_in(clk),
 	    .reset_in(rst),

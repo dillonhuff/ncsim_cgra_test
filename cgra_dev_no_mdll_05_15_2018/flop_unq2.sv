@@ -19,9 +19,9 @@
 // --------------- Begin Pre-Generation Parameters Status Report ---------------
 //
 //	From 'generate' statement (priority=5):
+// Parameter Type 	= RFlop
 // Parameter Width 	= 4
 // Parameter Default 	= 0
-// Parameter Type 	= RFlop
 //
 //		---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 //
